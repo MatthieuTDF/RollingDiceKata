@@ -7,7 +7,8 @@ public class Main {
     public static void main(String[] args) {
         RNG.setImpl(new RNGImpl());
 
-        Roll r = new Roll("2d6-2");
+        //Roll r = new Roll("2d6-2");
+        Roll r = new Roll(2,6,-1);
         r.makeRoll(Roll.RollType.NORMAL);
     }
 }
