@@ -43,16 +43,15 @@ public class Roll {
     }
 
     public int makeRoll(RollType rollType) {
-        // TODO
         if (this.fomulaCheck){
-            RNGMock mock = new RNGMock();
+            Dice dice = new Dice(this.diceValue);
             int[] playsValues = new int[2];
             int result = 0;
             int plays = rollType != RollType.NORMAL ? 2 : 1;
             for(int playNum = 0; playNum < plays; playNum++){
                 result = 0;
                 for(int rollNum = 0; rollNum < this.nbRoll; rollNum++){
-                    result += mock.random(this.diceValue);
+                    result += dice.rollDice();
                 }
                 playsValues[playNum] = result = result + this.modifier < 0 ? 0 : result + this.modifier;
             }
@@ -66,5 +65,4 @@ public class Roll {
         }
         return -1;
     }
-
 }
