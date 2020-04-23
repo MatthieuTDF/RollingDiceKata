@@ -35,6 +35,12 @@ public class RollTest {
     }
 
     @Test
+    public void singleD6RollWithDisad() {
+        Roll rollTest = new Roll(6, 1, 0);
+        Assert.assertEquals(4, rollTest.makeRoll(Roll.RollType.DISADVANTAGE));
+    }
+
+    @Test
     public void singleD6RollWithModifierPositive() {
         Roll rollTest = new Roll(6, 1, 2);
         Assert.assertEquals(6, rollTest.makeRoll(Roll.RollType.NORMAL));
