@@ -15,6 +15,7 @@ public class Roll {
     public int modifier;
 
     public Roll(String formula) {
+        // sort according to formula's size and for each , check if syntax is correct
         switch (formula.length()) {
             case 2 -> {
                 if (formula.charAt(0) == 'd' && charToInteger(formula.charAt(1)) > 0)
@@ -53,10 +54,12 @@ public class Roll {
     public int makeRoll(RollType rollType) {
         if ( this.diceValue > 0 && this.nbRoll > 0) {
             int firstLaunch = 0, secondLaunch = 0;
+            // roll the dice according to the number of rolls
             for (int i = 0; i < this.nbRoll; i++) {
                 firstLaunch += Random.RNG.random(this.diceValue);
                 secondLaunch += Random.RNG.random(this.diceValue);
             }
+            // return value according to type of roll or 0 if value < 0
             switch (rollType) {
                 case NORMAL -> {
                     return Math.max(firstLaunch + this.modifier, 0);
@@ -69,9 +72,11 @@ public class Roll {
                 }
             }
         }
+        //if we arrive here it is that something is wrongly informed so we return an error value -1
         return -1;
     }
 
+    // convert digit to integer return -1 if not a digit
     public int charToInteger(char c) {
         if (Character.isDigit(c))
             return Integer.parseInt(String.valueOf(c));
