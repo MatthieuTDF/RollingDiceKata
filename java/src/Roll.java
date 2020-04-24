@@ -85,7 +85,7 @@ public class Roll {
             i++;
             if(i>=formula.length())break;//s'il n'y a pas de modificateur on sors de la boucle
         }
-        if(val.length()==0){//s'il y a un modificateur mais pas de valeur pour le dé
+        if(val.length()==0){//s'il y a un modificateur mais pas de valeur pour le dé, ou valeur négative
             tab[0] = -1;
             return tab;
         }
