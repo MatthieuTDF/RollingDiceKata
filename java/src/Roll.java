@@ -61,7 +61,7 @@ public class Roll {
         }
         int i = 0;// curseur
         while(formula.charAt(i)!='d'){//tant qu'on ne voit pas le 'd'
-            if(i>=formula.length()||!Character.isDigit(formula.charAt(i))){
+            if(i>=formula.length()-1||!Character.isDigit(formula.charAt(i))){
                 tab[0] = -1;//si le caractère n'est pas un nombres ou si on a atteint la fin de la formule
                 return tab;
             }

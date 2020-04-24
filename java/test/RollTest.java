@@ -140,4 +140,9 @@ public class RollTest {
         Roll rollTest = new Roll("fhfxhfch64gxf4dg6d4g");
         Assert.assertEquals(-1, rollTest.makeRoll(Roll.RollType.NORMAL));
     }
+    @Test
+    public void onlyNumbers() {
+        Roll rollTest = new Roll("12345");
+        Assert.assertEquals(-1, rollTest.makeRoll(Roll.RollType.NORMAL));
+    }
 }
