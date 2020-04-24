@@ -71,7 +71,6 @@ public class Roll {
                 this.modifier = Integer.parseInt(sub_variables[1]);
             }
         }
-
     }
 
 
