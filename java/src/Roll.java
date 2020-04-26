@@ -66,7 +66,7 @@ public class Roll {
 
         int result =0;
         int resfinal =0;
-        if (this.Value <= 0 || this.number <= 0){ //verifie si le nombre de lancers et si le nombre de dé est negatif
+        if (this.Value <= 0 || this.number <= 0){ //verifie si le nombre dé lancers et si la valeur du dé est negatif
             return -1;
         }
 
@@ -76,7 +76,9 @@ public class Roll {
         }
 
         if (rollType != rollType.NORMAL ){ // verifie si c'est un lancer normal sinon
-            result += newDice.rollDice();
+            for (int i =0; i < number; i++) {
+                result += newDice.rollDice();
+            }
             if (rollType == rollType.ADVANTAGE){ // prend le max des deux lancers si c'est advantage sinon prend le min
                 resfinal = Math.max(resfinal, result);
             } else {
