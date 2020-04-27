@@ -10,7 +10,7 @@ public class Roll {
 
         Donc mes test là où il y a plusieurs lancer ne sont pas validés.
 
-        Sinon tout mes tests sont bons
+        Sinon tout mes tests sont bons.
         */
 
     private int DiceValue;
