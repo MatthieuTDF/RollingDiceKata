@@ -92,44 +92,65 @@ public class Roll {
             }
             this.nbRoll = 1;
         }*/
-        //boolean error = false;
+        boolean error = true;
 
         /* 2 chars*/
         if (formula.length() < 3 && (int) formula.charAt(0) == 100) {
             this.nbRoll = 1;
-            if (formula.charAt(1) == 54) {
+            if ((int) formula.charAt(1) > 48 && (int) formula.charAt(1) <= 57) {
                 this.diceValue = (int) formula.charAt(1) - '0';
                 this.modifier = 0;
+                error = false;
             } else {
                 this.diceValue = -1;
             }
         }
         /* 3 chars*/
         if (formula.length() < 4 && (int) formula.charAt(0) > 48 && (int) formula.charAt(0) <= 57) {
-            if (formula.charAt(1) == 100 && (int) formula.charAt(2) == 54) {
+            if (formula.charAt(1) == 100 && (int) formula.charAt(2) > 48 && (int) formula.charAt(2) <= 57) {
+                this.nbRoll = (int) formula.charAt(0) - '0';
                 this.diceValue = (int) formula.charAt(2) - '0';
                 this.modifier = 0;
+                error = false;
             } else {
                 this.diceValue = -1;
             }
-        } else {
-            this.nbRoll = -1;
         }
 
         /* 4 & 5 chars */
         if (formula.length() >= 4 && (int) formula.charAt(0) > 48 && (int) formula.charAt(0) <= 57) {
             this.nbRoll = (int) formula.charAt(0) - '0';
-            if (formula.charAt(1) == 100 && formula.charAt(2) == 54) {
+            if (formula.charAt(1) == 100 && (int) formula.charAt(2) > 48 && (int) formula.charAt(2) <= 57) {
                 this.diceValue = (int) formula.charAt(2) - '0';
                 if ((int) formula.charAt(3) == 43 && (int) formula.charAt(4) > 48 && (int) formula.charAt(4) <= 57) {
                     this.modifier = (int) formula.charAt(4) - '0';
-                } else {
-                    this.modifier = -1;
+                    error = false;
+                } else if ((int) formula.charAt(3) == 45 && (int) formula.charAt(4) > 48 && (int) formula.charAt(4) <= 57){
+                    this.modifier = ((int) formula.charAt(4) - '0') * -1;
+                    error = false;
+                }else {
+                    this.diceValue = -1;
                 }
             } else {
                 this.diceValue = -1;
             }
-        } else {
+        }
+
+        if (formula.length() == 4 && formula.charAt(0) == 100) {
+            this.nbRoll = 1;
+            if ((int) formula.charAt(1) > 48 && (int) formula.charAt(1) <= 57) {
+                this.diceValue = (int) formula.charAt(1) - '0';
+                if ((int) formula.charAt(2) == 43 && (int) formula.charAt(3) > 48 && (int) formula.charAt(3) <= 57) {
+                    this.modifier = (int) formula.charAt(3) - '0';
+                } else if ((int) formula.charAt(2) == 45 && (int) formula.charAt(3) > 48 && (int) formula.charAt(3) <= 57){
+                    this.modifier = ((int) formula.charAt(3) - '0') * -1;
+                }else {
+                    this.diceValue = -1;
+                }
+            } else {
+                this.diceValue = -1;
+            }
+        } else if (error){
             this.nbRoll = -1;
         }
     }
@@ -141,7 +162,7 @@ public class Roll {
     }
 
     public int makeRoll(RollType rollType) {
-        if (this.diceValue <= 0|| this.nbRoll <= 0 || this.modifier <= 0){
+        if (this.diceValue <= 0|| this.nbRoll <= 0){
             return -1;
         }
         Dice myDice = new Dice(this.diceValue);
@@ -178,7 +199,7 @@ public class Roll {
         if (result + modifier >= 0) {
             return result + modifier;
         }else{
-            return -1;
+            return 0;
         }
     }
 }
